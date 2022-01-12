@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
@@ -36,7 +37,8 @@ public class FailTest {
         caps.setCapability("os_version", "10");
         caps.setCapability("browser", "Chrome");
         caps.setCapability("browser_version", "latest");
-
+        Date d = new Date();
+        caps.setCapability("build","Demo_"+d.getTime());
         driver = new RemoteWebDriver(new URL(URL), caps);
     }
 

@@ -16,6 +16,8 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
@@ -28,6 +30,8 @@ public class PercyTest {
     private static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
     private WebDriver driver;
     private static Percy percy;
+    List<Integer> width = Arrays.asList(375, 480, 720, 1280, 1440, 1920);
+
 
 
     @BeforeTest(alwaysRun = true)
@@ -43,7 +47,7 @@ public class PercyTest {
     public void testSearchBrowserStack() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         driver.get("http://localhost:3000/");
-        Thread.sleep(5000);
+        Thread.sleep(8000);
         wait.until(elementToBeClickable(By.id("signin")));
         percy.snapshot("Landing Page");
         wait.until(elementToBeClickable(By.id("signin"))).click();
@@ -53,13 +57,12 @@ public class PercyTest {
         driver.findElement(By.id("login-btn")).click();
         String username = wait.until(presenceOfElementLocated(By.className("username"))).getText();
         Assert.assertEquals(username, "fav_user", "Incorrect username");
+        Thread.sleep(8000);
         percy.snapshot("Home");
     }
 
     @AfterTest(alwaysRun = true)
     public void teardown() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"BStackDemo login passed\"}}");
         driver.quit();
     }
 

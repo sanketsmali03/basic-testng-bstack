@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,6 +40,9 @@ public class ParallelTest {
         capDetails.putAll(jsonPath.getMap("capabilities"));
         capDetails.putAll(jsonPath.getMap("environments." + environment));
         DesiredCapabilities caps = new DesiredCapabilities(capDetails);
+        Date d = new Date();
+        caps.setCapability("build","ParallelDemo");
+        System.out.println(d.getTime());
         driverThread.set(new RemoteWebDriver(new URL(URL), caps));
     }
 

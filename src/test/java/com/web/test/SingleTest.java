@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
@@ -28,7 +29,6 @@ public class SingleTest {
     public void setup() throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("project", "BrowserStack");
-        caps.setCapability("build", "Demo");
         caps.setCapability("name", "Single Test - Chrome");
 
         caps.setCapability("os", "Windows");
@@ -37,7 +37,8 @@ public class SingleTest {
         caps.setCapability("browser_version", "latest");
 
         caps.setCapability("browserstack.debug", "true");
-
+        Date d = new Date();
+        caps.setCapability("build","Demo_"+d.getTime());
         driver = new RemoteWebDriver(new URL(URL), caps);
     }
 

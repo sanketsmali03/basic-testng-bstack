@@ -10,6 +10,7 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,21 +40,20 @@ public class LocalTest {
         caps.setCapability("project", "BrowserStack");
         caps.setCapability("build", "Demo");
         caps.setCapability("name", "Local Test - Chrome");
-
         caps.setCapability("os", "Windows");
         caps.setCapability("os_version", "10");
         caps.setCapability("browser", "Chrome");
         caps.setCapability("browser_version", "latest");
-
         caps.setCapability("browserstack.debug", "true");
         caps.setCapability("browserstack.local", "true");
-
+        Date d = new Date();
+        caps.setCapability("build","Demo_"+d.getTime());
         driver = new RemoteWebDriver(new URL(URL), caps);
     }
 
     @Test
     public void testLocalServer() {
-        driver.get("http://localhost:8000");
+        driver.get("http://localhost:3000");
         Assert.assertEquals(driver.getTitle(), "Local Server", "Incorrect title");
     }
 

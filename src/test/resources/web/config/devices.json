@@ -1,7 +1,6 @@
 {
   "capabilities": {
     "project": "BrowserStack",
-    "build": "Demo",
     "browserstack.debug": "true"
   },
   "environments": {
