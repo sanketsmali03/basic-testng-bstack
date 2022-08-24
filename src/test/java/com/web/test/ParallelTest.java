@@ -27,6 +27,7 @@ public class ParallelTest {
     private static String date_time="";
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
+    private static final String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
     private static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
     @BeforeSuite
@@ -44,6 +45,7 @@ public class ParallelTest {
         capDetails.putAll(jsonPath.getMap("environments." + environment));
         DesiredCapabilities caps = new DesiredCapabilities(capDetails);
         caps.setCapability("build","ParallelDemo_"+date_time);
+        caps.setCapability("build", buildName);
         driverThread.set(new RemoteWebDriver(new URL(URL), caps));
     }
 

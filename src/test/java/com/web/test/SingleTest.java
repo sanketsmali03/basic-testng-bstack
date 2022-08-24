@@ -22,6 +22,7 @@ public class SingleTest {
 
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
+    private static final String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
     private static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
     private WebDriver driver;
 
@@ -35,8 +36,9 @@ public class SingleTest {
         caps.setCapability("browser", "Chrome");
         caps.setCapability("browser_version", "latest");
         caps.setCapability("browserstack.debug", "true");
+        caps.setCapability("build", buildName);
         Date d = new Date();
-        caps.setCapability("build","Demo_"+d.getTime());
+
         driver = new RemoteWebDriver(new URL(URL), caps);
     }
 
