@@ -42,6 +42,11 @@
       "browser": "Safari",
       "browser_version": "latest"
     },
+    "pixel4": {
+      "name": "Parallel Test - Pixel 4",
+      "device": "Google Pixel 4",
+      "realMobile": "true"
+    },
     "custom": {
       "browserstack.geoLocation": "FR",
       "browserstack.customNetwork": "1000,1000,100,1"
