@@ -11,7 +11,7 @@
     },
     "iphone12": {
       "name": "Parallel Test - iPhone 11",
-      "device": "iPhone 11",
+      "device": "iPhone 12",
       "realMobile": "true"
     },
     "chrome": {
