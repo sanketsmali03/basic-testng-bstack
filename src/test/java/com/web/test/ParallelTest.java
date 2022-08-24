@@ -44,7 +44,6 @@ public class ParallelTest {
         capDetails.putAll(jsonPath.getMap("capabilities"));
         capDetails.putAll(jsonPath.getMap("environments." + environment));
         DesiredCapabilities caps = new DesiredCapabilities(capDetails);
-        caps.setCapability("build","ParallelDemo_"+date_time);
         caps.setCapability("build", buildName);
         driverThread.set(new RemoteWebDriver(new URL(URL), caps));
     }
