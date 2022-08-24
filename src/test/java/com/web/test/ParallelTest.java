@@ -9,10 +9,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -27,10 +24,16 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 public class ParallelTest {
 
     private static final ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
-
+    private static String date_time="";
     private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
     private static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
+
+    @BeforeSuite
+    public void beforeSuiteMethod() throws Exception {
+        Date d = new Date();
+        date_time= String.valueOf(d.getTime());
+    }
 
     @BeforeTest(alwaysRun = true)
     @Parameters({"config", "environment"})
@@ -40,9 +43,7 @@ public class ParallelTest {
         capDetails.putAll(jsonPath.getMap("capabilities"));
         capDetails.putAll(jsonPath.getMap("environments." + environment));
         DesiredCapabilities caps = new DesiredCapabilities(capDetails);
-        Date d = new Date();
-        caps.setCapability("build","ParallelDemo");
-        System.out.println(d.getTime());
+        caps.setCapability("build","ParallelDemo_"+date_time);
         driverThread.set(new RemoteWebDriver(new URL(URL), caps));
     }
 

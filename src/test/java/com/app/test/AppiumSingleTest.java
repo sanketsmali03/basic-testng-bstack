@@ -24,14 +24,15 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 
 import static io.restassured.RestAssured.*;
 
 public class AppiumSingleTest {
-
-    private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
-    private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
+    private static String date_time="";
+    private static final String USERNAME = "sanketmali4";
+    private static final String ACCESS_KEY = "AvXqJnz1pcgi2RpGwsV1";
     private static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
     private MobileDriver<MobileElement> driver;
 
@@ -59,19 +60,22 @@ public class AppiumSingleTest {
         } else {
             System.out.println("Using previously uploaded app...");
         }
+
+        Date d = new Date();
+        date_time= String.valueOf(d.getTime());
     }
 
     @BeforeTest(alwaysRun = true)
     public void setup() throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("project", "BrowserStack");
-        caps.setCapability("build", "Demo");
+        caps.setCapability("build", "AppDemo_"+date_time);
         caps.setCapability("name", "Wikipedia Search Function - Google Pixel 3");
-
         caps.setCapability("device", "Google Pixel 3");
         caps.setCapability("os_version", "10.0");
         caps.setCapability("real_mobile", "true");
         caps.setCapability("app", "DemoApp");
+        caps.setCapability("browserstack.networkLogs", "true");
 
         driver = new AndroidDriver<>(new URL(URL), caps);
     }

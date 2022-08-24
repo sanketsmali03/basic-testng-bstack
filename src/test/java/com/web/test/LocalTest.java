@@ -29,6 +29,7 @@ public class LocalTest {
         Map<String, String> bsLocalArgs = new HashMap<>();
         bsLocalArgs.put("key", ACCESS_KEY);
         bsLocalArgs.put("v", "true");
+        bsLocalArgs.put("force","");
         bsLocalArgs.put("logFile", "logs.txt");
         local.start(bsLocalArgs);
         System.out.println("Connected. Now testing...");

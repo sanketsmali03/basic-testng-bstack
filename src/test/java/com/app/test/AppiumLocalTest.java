@@ -71,12 +71,11 @@ public class AppiumLocalTest {
         caps.setCapability("project", "BrowserStack");
         caps.setCapability("build", "Demo");
         caps.setCapability("name", "Local Testing - Google Pixel 3");
-
         caps.setCapability("device", "Google Pixel 3");
         caps.setCapability("os_version", "9.0");
         caps.setCapability("real_mobile", "true");
         caps.setCapability("app", "LocalApp");
-
+        caps.setCapability("browserstack.networkLogs", "true");
         caps.setCapability("browserstack.local", "true");
 
         driver = new AndroidDriver<>(new URL(URL), caps);
