@@ -31,8 +31,8 @@ import static io.restassured.RestAssured.*;
 
 public class AppiumSingleTest {
     private static String date_time="";
-    private static final String USERNAME = "sanketmali4";
-    private static final String ACCESS_KEY = "AvXqJnz1pcgi2RpGwsV1";
+       private static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
+    private static final String ACCESS_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
     private static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
     private MobileDriver<MobileElement> driver;
 
